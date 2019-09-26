@@ -20,8 +20,9 @@ public class MainActivity extends Activity implements NfcAdapter.CreateNdefMessa
     private NfcAdapter nfcAdapter;
     private EditText amountSend;
     private Button send;
-    private TextView value;
+    private TextView walletValue;
     private Integer amount=100;
+    String text ;
 
 
     @Override
@@ -32,10 +33,11 @@ public class MainActivity extends Activity implements NfcAdapter.CreateNdefMessa
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         amountSend=findViewById(R.id.editfield);
         send=findViewById(R.id.send);
-        value=findViewById(R.id.value);
+        walletValue=findViewById(R.id.value);
     }
     public void send(View v){
-        if(amount<=0)
+        text= amountSend.getText().toString();
+        if(amount-Integer.parseInt(text)<0)
             Toast.makeText(this, "No Enough Amount", Toast.LENGTH_LONG).show();
         else {
             if (nfcAdapter == null) {
@@ -49,10 +51,10 @@ public class MainActivity extends Activity implements NfcAdapter.CreateNdefMessa
     }
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
-        String text = amountSend.getText().toString();
+
         amount=amount-Integer.parseInt(text);
-        String temp=amount.toString();
-        value.setText(temp);
+        text=amount.toString();
+        walletValue.setText(text);
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { createMime (
                         "application/vnd.com.example.android.beam", text.getBytes())
@@ -79,12 +81,12 @@ public class MainActivity extends Activity implements NfcAdapter.CreateNdefMessa
 
         NdefMessage msg = (NdefMessage) rawMsgs[0];
 
+        text= new String(msg.getRecords()[0].getPayload());
 
-       String addamount= new String(msg.getRecords()[0].getPayload());
+       amount=Integer.parseInt(text)+amount;
 
-       amount=Integer.parseInt(addamount)+amount;
-
-       value.setText(amount);
+       text=amount.toString();
+       walletValue.setText(text);
 
     }
 }
