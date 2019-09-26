@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,40 +9,80 @@
 
     <EditText
         android:id="@+id/editfield"
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
-        android:hint="Enter Amount"
+        android:background="@drawable/round"
+        android:elevation="1dp"
+        android:layout_marginTop="250dp"
+        android:hint="Enter Amount.."
         android:inputType="number"
-        />
+        android:padding="10dp"
+        android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/send"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/editfield"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:onClick="send"
-        android:text="Send" />
+        android:id="@+id/buttons">
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="310dp"
+            android:background="@drawable/round2"
+            android:onClick="send"
+            android:text="Send"
+            android:textColor="@color/colorAccent" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="310dp"
+            android:layout_toEndOf="@id/send"
+            android:background="@drawable/round2"
+            android:text="ADD"
+            android:textColor="@color/colorAccent" />
+    </RelativeLayout>
+
+
     <TextView
         android:id="@+id/wallet"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Wallet"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttons"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/send"
-        android:textSize="35sp"
         android:layout_marginTop="20dp"
-        />
+        android:background="@drawable/round"
+        android:elevation="1dp"
+        android:text=" Wallet"
+        android:textAllCaps="false"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:typeface="normal" />
     <TextView
         android:id="@+id/value"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text=" 100"
-        android:layout_centerHorizontal="true"
+
         android:layout_below="@id/wallet"
+        android:layout_centerHorizontal="true"
         android:textSize="35sp"
         />
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_below="@id/value"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        />
+
 
 </RelativeLayout>
